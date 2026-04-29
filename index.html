@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mataya Mongeau | Marketing Coordinator</title>
+  <meta name="description" content="Marketing Coordinator who led a full company rebrand and drove +53% engagement growth. Based in Minnesota." />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+  <style>
+    /* Reset */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    /* Design Tokens */
+    :root {
+      --coral: #C96A4F;
+      --coral-light: #f0c4b8;
+      --coral-dark: #a8503a;
+      --cream: #fdf8f4;
+      --cream-dark: #f5ede6;
+      --lavender: #9b7ecb;
+      --lavender-light: #ede6f7;
+      --honey: #e8c96d;
+      --charcoal: #2d2a27;
+      --warm-gray: #7a746e;
+      --border: #e8e2dc;
+      --white: #ffffff;
+      --font-display: 'Fraunces', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--charcoal);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: rgba(201, 106, 79, 0.2);
+      color: var(--charcoal);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    @media (min-width: 640px) { .container { padding: 0 1.5rem; } }
+    @media (min-width: 1024px) { .container { padding: 0 2rem; } }
+
+    /* Decorative Blobs */
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .blob-1 { width: 24rem; height: 24rem; background: var(--coral-light); top: -12rem; right: -12rem; }
+    .blob-2 { width: 20rem; height: 20rem; background: var(--lavender-light); top: 33%; left: -10rem; }
+    .blob-3 { width: 16rem; height: 16rem; background: rgba(232, 201, 109, 0.3); bottom: 5rem; right: 5rem; }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: rgba(253, 248, 244, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 4rem;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--coral);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .nav-links a {
+      font-size: 0.875rem;
+      color: var(--warm-gray);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--coral); }
+    .nav-cta {
+      font-size: 0.875rem !important;
+      padding: 0.5rem 1rem;
+      background: var(--coral);
+      color: var(--white) !important;
+      border-radius: 9999px;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--coral-dark); }
+
+    /* Mobile nav */
+    @media (max-width: 639px) {
+      .nav-links a:not(.nav-cta) { display: none; }
+    }
+
+    /* Hero */
+    .hero {
+      padding: 8rem 0 4rem;
+      position: relative;
+      z-index: 1;
+    }
+    @media (min-width: 1024px) { .hero { padding: 10rem 0 6rem; } }
+    
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.25rem 0.75rem;
+      background: var(--lavender-light);
+      color: var(--lavender);
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+    .badge svg { width: 14px; height: 14px; }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 600;
+      line-height: 1.1;
+      color: var(--charcoal);
+      margin-bottom: 1.5rem;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, var(--coral), var(--lavender));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+      color: var(--warm-gray);
+      line-height: 1.6;
+      max-width: 42rem;
+      margin-bottom: 2rem;
+    }
+    .highlight {
+      background: linear-gradient(180deg, transparent 60%, rgba(232, 201, 109, 0.5) 60%);
+      padding: 0 0.25rem;
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+
+    /* Buttons */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: var(--coral);
+      color: var(--white);
+      border-radius: 9999px;
+      font-weight: 500;
+      transition: all 0.2s;
+      border: none;
+      font-size: 1rem;
+    }
+    .btn-primary:hover { background: var(--coral-dark); gap: 0.75rem; }
+    .btn-primary svg { width: 16px; height: 16px; }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border: 2px solid rgba(45, 42, 39, 0.2);
+      border-radius: 9999px;
+      font-weight: 500;
+      color: var(--charcoal);
+      transition: all 0.2s;
+      background: transparent;
+      font-size: 1rem;
+    }
+    .btn-outline:hover { border-color: var(--coral); color: var(--coral); }
+    .btn-outline svg { width: 16px; height: 16px; }
+
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem; }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.875rem;
+      color: var(--warm-gray);
+    }
+    .hero-meta a { transition: color 0.2s; }
+    .hero-meta a:hover { color: var(--coral); }
+    .hero-meta .dot { color: var(--border); }
+    .meta-item { display: flex; align-items: center; gap: 0.375rem; }
+    .meta-item svg { width: 16px; height: 16px; color: var(--coral); }
+
+    /* Stats Bento Grid */
+    .stats-section { padding: 4rem 0 5rem; position: relative; z-index: 1; }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    @media (min-width: 1024px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
+
+    .stat-card {
+      padding: 1.5rem;
+      border-radius: 1.5rem;
+      transition: all 0.3s;
+    }
+    .stat-card:hover { transform: translateY(-4px); box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
+
+    .stat-card.featured {
+      grid-column: span 2;
+      padding: 2rem;
+      background: var(--coral);
+      color: var(--white);
+    }
+    .stat-card.featured .stat-number { color: var(--white); }
+    .stat-card.featured .stat-label { color: rgba(255,255,255,0.8); }
+
+    .stat-card.white { background: var(--white); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .stat-card.lavender { background: var(--lavender-light); }
+    .stat-card.honey { background: rgba(232, 201, 109, 0.4); }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 0.5rem;
+    }
+    .stat-card.featured .stat-number { font-size: clamp(2.5rem, 5vw, 3.75rem); }
+    .stat-label { font-size: 0.875rem; color: var(--warm-gray); }
+
+    .what-i-do {
+      grid-column: span 2;
+      padding: 2rem;
+      background: var(--white);
+      border-radius: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    @media (min-width: 1024px) { .what-i-do { grid-column: span 3; } }
+    .what-i-do-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--warm-gray);
+      margin-bottom: 1rem;
+    }
+    .what-i-do p {
+      font-family: var(--font-display);
+      font-size: clamp(1.25rem, 2.5vw, 1.875rem);
+      color: var(--charcoal);
+      line-height: 1.5;
+    }
+
+    /* Experience Section */
+    .experience { padding: 4rem 0 6rem; position: relative; z-index: 1; }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--coral);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 3rem;
+    }
+
+    .exp-card {
+      padding: 2rem;
+      border-radius: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .exp-card.current { background: var(--white); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .exp-card.education { background: rgba(237, 230, 247, 0.5); }
+
+    .exp-header {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    @media (min-width: 1024px) {
+      .exp-header { flex-direction: row; align-items: flex-start; justify-content: space-between; }
+    }
+    .exp-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 0.25rem;
+    }
+    .exp-company { font-weight: 500; color: var(--coral); }
+    .exp-company.edu { color: var(--lavender); }
+    .exp-date {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--warm-gray);
+    }
+    .current-badge {
+      padding: 0.25rem 0.75rem;
+      background: rgba(201, 106, 79, 0.1);
+      color: var(--coral);
+      border-radius: 9999px;
+      font-size: 0.875rem;
+    }
+
+    .exp-body p {
+      color: var(--charcoal);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    .exp-body p:last-child { margin-bottom: 0; }
+
+    .exp-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+    .exp-tag {
+      padding: 0.25rem 0.75rem;
+      background: var(--cream-dark);
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      color: var(--warm-gray);
+    }
+
+    /* Skills Section */
+    .skills {
+      padding: 4rem 0 6rem;
+      background: var(--white);
+      position: relative;
+      z-index: 1;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    @media (min-width: 1024px) { .skills-grid { grid-template-columns: repeat(4, 1fr); } }
+
+    .skill-card {
+      padding: 1.5rem;
+      border-radius: 1rem;
+    }
+    .skill-card h3 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .skill-card ul { list-style: none; }
+    .skill-card li {
+      font-size: 0.875rem;
+      color: var(--charcoal);
+      padding: 0.25rem 0;
+    }
+    .skill-card.marketing { background: rgba(201, 106, 79, 0.1); }
+    .skill-card.marketing h3 { color: var(--coral); }
+    .skill-card.social { background: var(--lavender-light); }
+    .skill-card.social h3 { color: var(--lavender); }
+    .skill-card.creative { background: rgba(232, 201, 109, 0.3); }
+    .skill-card.creative h3 { color: var(--charcoal); }
+    .skill-card.tools { background: var(--cream-dark); }
+    .skill-card.tools h3 { color: var(--warm-gray); }
+
+    /* Contact Section */
+    .contact {
+      padding: 5rem 0 8rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .contact-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.25rem 0.75rem;
+      background: rgba(201, 106, 79, 0.1);
+      color: var(--coral);
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+    .contact-badge svg { width: 14px; height: 14px; }
+    .contact h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 1.5rem;
+    }
+    .contact p {
+      font-size: 1.25rem;
+      color: var(--warm-gray);
+      max-width: 36rem;
+      margin: 0 auto 2.5rem;
+    }
+    .contact-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      background: var(--coral);
+      color: var(--white);
+      border-radius: 9999px;
+      font-weight: 500;
+      font-size: 1.125rem;
+      transition: all 0.2s;
+    }
+    .contact-email:hover { background: var(--coral-dark); gap: 0.75rem; }
+    .contact-email svg { width: 20px; height: 20px; }
+
+    .contact-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .contact-links a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--warm-gray);
+      transition: color 0.2s;
+    }
+    .contact-links a:hover { color: var(--coral); }
+    .contact-links svg { width: 20px; height: 20px; }
+
+    /* Footer */
+    footer {
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.875rem;
+      color: var(--warm-gray);
+    }
+    @media (min-width: 640px) {
+      .footer-inner { flex-direction: row; justify-content: space-between; }
+    }
+    .footer-heart { display: flex; align-items: center; gap: 0.375rem; }
+    .footer-heart svg { width: 14px; height: 14px; color: var(--coral); fill: var(--coral); }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-in {
+      animation: fadeUp 0.6s ease-out forwards;
+      opacity: 0;
+    }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+  </style>
+</head>
+<body>
+  <!-- Decorative Blobs -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="container nav-inner">
+      <span class="nav-logo">mataya</span>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact" class="nav-cta">Let's Chat</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="badge animate-in">
+        <i data-lucide="sparkles"></i>
+        Open to opportunities
+      </div>
+      
+      <h1 class="animate-in delay-1">
+        Hey, I'm <span class="gradient-text">Mataya</span> 👋
+      </h1>
+      
+      <p class="hero-subtitle animate-in delay-2">
+        Marketing Coordinator who led a full company rebrand and drove 
+        <span class="highlight">+53% engagement growth</span>.
+        I turn brand vision into content that actually converts.
+      </p>
+      
+      <div class="hero-buttons animate-in delay-3">
+        <a href="#contact" class="btn-primary">
+          Get in Touch
+          <i data-lucide="arrow-right"></i>
+        </a>
+        <a href="mataya-mongeau-resume.pdf" class="btn-outline">
+          <i data-lucide="download"></i>
+          Resume
+        </a>
+      </div>
+      
+      <div class="hero-meta animate-in delay-4">
+        <div class="meta-item">
+          <i data-lucide="map-pin"></i>
+          Elk River, Minnesota
+        </div>
+        <span class="dot">•</span>
+        <a href="https://linkedin.com/in/matayamongeau" target="_blank" rel="noopener noreferrer" class="meta-item">
+          <i data-lucide="linkedin"></i>
+          LinkedIn
+        </a>
+        <span class="dot">•</span>
+        <a href="mailto:hello@meetmataya.com" class="meta-item">
+          <i data-lucide="mail"></i>
+          Email
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section id="about" class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card featured">
+          <div class="stat-number">+53%</div>
+          <div class="stat-label">Instagram engagement growth in one quarter</div>
+        </div>
+        <div class="stat-card white">
+          <div class="stat-number">15+</div>
+          <div class="stat-label">Creative assets produced monthly</div>
+        </div>
+        <div class="stat-card lavender">
+          <div class="stat-number">25%</div>
+          <div class="stat-label">Increase in qualified sales calls</div>
+        </div>
+        <div class="stat-card honey">
+          <div class="stat-number">5+</div>
+          <div class="stat-label">Channels managed in rebrand</div>
+        </div>
+        <div class="what-i-do">
+          <div class="what-i-do-label">What I Do</div>
+          <p>
+            I run <span class="highlight">all marketing operations</span> for a home services company—from brand strategy to lead generation. 
+            As the sole marketing resource, I own everything from social media to advertising to converting leads into sales calls.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="experience">
+    <div class="container">
+      <p class="section-label">Experience</p>
+      <h2 class="section-title">Where I've Made Impact</h2>
+
+      <div class="exp-card current">
+        <div class="exp-header">
+          <div>
+            <div class="exp-title">Marketing Coordinator</div>
+            <div class="exp-company">Thelen Plumbing, Heating & Air</div>
+          </div>
+          <div class="exp-date">
+            <span class="current-badge">Current</span>
+            <span>May 2024 – Present</span>
+          </div>
+        </div>
+        <div class="exp-body">
+          <p>
+            <strong>Led company-wide rebrand</strong> including logo, brand voice, visual system, and templates across all channels. 
+            Manage 100% of marketing operations as sole marketing resource.
+          </p>
+          <p>
+            Coordinate multi-channel advertising across digital and print, <span class="highlight">reducing proof approval time by 40%</span>. 
+            Developed lead generation workflows that convert marketing prospects into qualified sales calls.
+          </p>
+        </div>
+        <div class="exp-tags">
+          <span class="exp-tag">Brand Strategy</span>
+          <span class="exp-tag">Social Media</span>
+          <span class="exp-tag">Lead Generation</span>
+          <span class="exp-tag">Content Creation</span>
+          <span class="exp-tag">Advertising</span>
+        </div>
+      </div>
+
+      <div class="exp-card education">
+        <div class="exp-header">
+          <div>
+            <div class="exp-title">B.S. Marketing</div>
+            <div class="exp-company edu">Minnesota State University, Mankato</div>
+          </div>
+          <div class="exp-date">
+            <span>Graduated May 2024</span>
+          </div>
+        </div>
+        <div class="exp-body">
+          <p>
+            <strong>Keystone Project:</strong> Led 5-person team analyzing social trends to develop targeted campaign strategy. 
+            Coursework included Consumer Behavior, Marketing Management, and Advanced Professional Selling.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="skills">
+    <div class="container">
+      <p class="section-label">Skills</p>
+      <h2 class="section-title">What I Bring to the Table</h2>
+
+      <div class="skills-grid">
+        <div class="skill-card marketing">
+          <h3>Marketing</h3>
+          <ul>
+            <li>Campaign Strategy</li>
+            <li>Brand Development</li>
+            <li>Lead Generation</li>
+            <li>Multi-channel Ads</li>
+            <li>Analytics</li>
+          </ul>
+        </div>
+        <div class="skill-card social">
+          <h3>Social Media</h3>
+          <ul>
+            <li>Instagram & Facebook</li>
+            <li>Reels & Shorts</li>
+            <li>Content Calendaring</li>
+            <li>Community Building</li>
+            <li>Trend Analysis</li>
+          </ul>
+        </div>
+        <div class="skill-card creative">
+          <h3>Creative</h3>
+          <ul>
+            <li>Copywriting</li>
+            <li>Photography</li>
+            <li>Videography</li>
+            <li>Short-form Video</li>
+            <li>Brand Guidelines</li>
+          </ul>
+        </div>
+        <div class="skill-card tools">
+          <h3>Tools</h3>
+          <ul>
+            <li>Canva</li>
+            <li>Meta Business Suite</li>
+            <li>Microsoft Office</li>
+            <li>Tableau</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="contact-badge">
+        <i data-lucide="heart"></i>
+        Let's work together
+      </div>
+      
+      <h2>Ready to chat?</h2>
+      <p>
+        I'm currently open to new opportunities in marketing coordination and brand management. 
+        Let's talk about how I can help grow your brand.
+      </p>
+      
+      <a href="mailto:hello@meetmataya.com" class="contact-email">
+        <i data-lucide="mail"></i>
+        hello@meetmataya.com
+        <i data-lucide="arrow-right"></i>
+      </a>
+      
+      <div class="contact-links">
+        <a href="https://linkedin.com/in/matayamongeau" target="_blank" rel="noopener noreferrer">
+          <i data-lucide="linkedin"></i>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <p>&copy; 2026 Mataya Mongeau</p>
+      <p class="footer-heart">
+        Made with <i data-lucide="heart"></i> in Minnesota
+      </p>
+    </div>
+  </footer>
+
+  <!-- Initialize Lucide Icons -->
+  <script>lucide.createIcons();</script>
+</body>
+</html>
